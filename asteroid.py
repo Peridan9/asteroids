@@ -17,12 +17,24 @@ class Asteroid(CircleShape):
         self.kill()
         if self.radius <= ASTEROID_MIN_RADIUS:
             return
+        
+        # Asteroid big enough to be split
+
+        # random direction to move in given range
         ran = random.uniform(20,50)
+        
+        # create two velcoties based on the new diraction
         vec1 = self.velocity.rotate(ran)
         vec2 = self.velocity.rotate(-ran)
+
+        # new radius to the asteroid
         nR = self.radius - ASTEROID_MIN_RADIUS
+
+        # creating two new asteroids
         as1 = Asteroid(self.position.x,self.position.y,nR)
         as2 = Asteroid(self.position.x,self.position.y,nR)
+
+        # changing their direction and speed
         as1.velocity = vec1 * 1.2
         as2.velocity = vec2 * 1.2
 
